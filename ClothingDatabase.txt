@@ -1,10 +1,10 @@
-CLOTHING Shirt D+B Svelte_Parka Shiki00 40.00 20.00 1 1 2017 True KOP Uniqlo
-CLOTHING Pants D+B Leather_Shorts Shiki00 30.00 15.00 1 2 2017 False KOP Uniqlo
-CLOTHING Shirt Dragon_Couture White_Dragon Sakuraba1 50.00 25.00 5 23 2017 True KOP Uniqlo
-CLOTHING Shirt Dragon_Couture Light_and_Shadow Sakuraba1 23.00 13.00 6 3 2017 True KOP Uniqlo
-CLOTHING Shoes Dragon_Couture Typhoon Sakuraba1 20.00 10.00 1 1 2017 True KOP Uniqlo
-CLOTHING Pants Sheep_Heavenly Ribbon_Cargos Rhyme404 25.00 15.00 1 1 2017 True Exton PacSun  
-CLOTHING Pants Sheep_Heavenly Sparkling_Capris Rhyme404 20.00 15.00 1 2 2017 True Exton PacSun
-CLOTHING Shirt Jupiter_of_the_Monkey Komokuten JesusBeam420 30.00 15.00 5 7 2017 True Exton PacSun
-CLOTHING Shirt Jupiter_of_the_Monkey Togenkyo JesusBeam420 40.00 25.00 4 6 2017 True Exton PacSun
-CLOTHING Shoes Jupiter_of_the_Monkey Gekirin JesusBeam420 35.00 20.00 4 7 2017 True Exton PacSun
+CLOTHING Shirt Casual D+B Svelte_Parka Shiki00 40 20 1 1 2017 True KOP Uniqlo
+CLOTHING Pants Casual D+B Leather_Shorts Shiki00 30 15 1 2 2017 False KOP Uniqlo
+CLOTHING Shirt Formal Dragon_Couture White_Dragon Sakuraba1 50 25 5 23 2017 True KOP Uniqlo
+CLOTHING Shirt Formal Dragon_Couture Light_and_Shadow Sakuraba1 23 13 6 3 2017 True KOP Uniqlo
+CLOTHING Shoes Formal Dragon_Couture Typhoon Sakuraba1 20 10 1 1 2017 True KOP Uniqlo
+CLOTHING Pants Casual Sheep_Heavenly Ribbon_Cargos Rhyme404 25 15 1 1 2017 True Exton PacSun  
+CLOTHING Pants Casual Sheep_Heavenly Sparkling_Capris Rhyme404 20 15 1 2 2017 True Exton PacSun
+CLOTHING Shirt Athletic Jupiter_of_the_Monkey Komokuten JesusBeam420 30 15 5 7 2017 True Exton PacSun
+CLOTHING Shirt Athletic Jupiter_of_the_Monkey Togenkyo JesusBeam420 40 25 4 6 2017 True Exton PacSun
+CLOTHING Shoes Athletic Jupiter_of_the_Monkey Gekirin JesusBeam420 35 20 4 7 2017 True Exton PacSun

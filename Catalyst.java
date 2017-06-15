@@ -33,7 +33,7 @@ public class Catalyst {
 	public static void fillCategories() throws FileNotFoundException{
 		
 		Scanner kbd2 = new Scanner(System.in);
-		File file = new File("AllProducts.txt");
+		File file = new File("ClothingDatabase.txt");
 		Scanner sc = new Scanner(file);
 		
 		while(sc.hasNextLine()){
@@ -50,22 +50,23 @@ public class Catalyst {
 			String[] aspects = line.split(" ");
 			item.setProductType1(aspects[0]);
 			item.setProductType2(aspects[1]);
-			item.setBrandName(aspects[2]);
-			item.setProductName(aspects[3]);
-			item.setFoundBy(aspects[4]);
-			item.setOriginalPrice((Double.parseDouble(aspects[5])));
-			item.setSalePrice((Double.parseDouble(aspects[6])));
-			item.setMonthUpdated(Integer.parseInt(aspects[7]));
-			item.setDayUpdated(Integer.parseInt(aspects[8]));
-			item.setYearUpdated(Integer.parseInt(aspects[9]));
-			if(aspects[10].equals("TRUE")){
+			item.setOccasion(aspects[2]);
+			item.setBrandName(aspects[3]);
+			item.setProductName(aspects[4]);
+			item.setFoundBy(aspects[5]);
+			item.setOriginalPrice((Double.parseDouble(aspects[6])));
+			item.setSalePrice((Double.parseDouble(aspects[7])));
+			item.setMonthUpdated(Integer.parseInt(aspects[8]));
+			item.setDayUpdated(Integer.parseInt(aspects[9]));
+			item.setYearUpdated(Integer.parseInt(aspects[10]));
+			if(aspects[11].equals("TRUE")){
 				item.setInStock(true);
 			}
 			else{
 				item.setInStock(false);
 			}
-			item.setStore(aspects[11]);
 			item.setArea(aspects[12]);
+			item.setStore(aspects[13]);
 			allProducts.add(item);
 		}
 		/*
@@ -97,8 +98,14 @@ public class Catalyst {
 	public static void searchSale(){
 		System.out.println("Searching for sale");
 		
-		System.out.println("Are you searching via Product Type or Area?");
-		System.out.println("");
+		System.out.println("What are you searching for?");
+		System.out.println("1. Clothing");
+		System.out.println("2. Other");
+		
+		int choice = kbd.nextInt();
+		if(choice == 1 ){
+			searchClothing();
+		}
 	}
 
 	public static void postClothing(){
@@ -128,6 +135,29 @@ public class Catalyst {
 			item.setProductType2("OTHER");
 		}
 		
+		System.out.println("What occasion is this for?");
+		System.out.println("1. Formal");
+		System.out.println("2. Casual");
+		System.out.println("3. Athletic");
+		System.out.println("4. Other");
+		
+	    choice = kbd.nextInt();
+
+	    
+		
+		if(choice == 1){
+			item.setOccasion("FORMAL");
+		}
+		else if(choice == 2){
+			item.setOccasion("CASUAL");
+		}
+		else if(choice == 3){
+			item.setOccasion("ATHLETIC");
+		}
+		else if(choice == 4){
+			item.setOccasion("OTHER");
+		}
+		
 		System.out.println("Brand Name (optional, type '1' to skip)");
 		String input = kbd.next();
 		if(input.equals("1")){
@@ -151,7 +181,7 @@ public class Catalyst {
 		
 		System.out.println("Original Price(optional, type '1' to skip)");
 		input = kbd.next();
-		if(input.equals('1')){
+		if(input.equals("1")){
 			item.setOriginalPrice(0.0);
 		}
 		else{
@@ -201,5 +231,105 @@ public class Catalyst {
 		allProducts.add(item);
 		
 		item.displaySale();
+	}
+	
+	public static void searchClothing(){
+		
+		boolean searchArea = false;
+		boolean searchOcc = false;
+		boolean searchType = false;
+		
+		String desArea = null;
+		String desOcc = null;
+		String desType = null;
+		
+		System.out.println("Searching for Clothing");
+		
+		System.out.println("What area are you searching in?");
+		System.out.println("1. KOP");
+		System.out.println("2. Exton");
+		System.out.println("3. All");
+		
+		int choice = kbd.nextInt();
+		
+		if(choice == 1){
+			desArea = "KOP";
+			searchArea = true;
+		}
+		else if(choice == 2){
+			desArea = "EXTON";
+			searchArea = true;
+		}
+		
+		System.out.println("For what occasion?");
+		System.out.println("1. Formal");
+		System.out.println("2. Casual");
+		System.out.println("3. Athletic");
+		System.out.println("4. All");
+		
+		choice = kbd.nextInt();
+		
+		if(choice == 1){
+			desOcc = "FORMAL";
+			searchOcc = true;
+		}
+		else if(choice == 2){
+			desOcc= "CASUAL";
+			searchOcc = true;
+		}
+		else if(choice == 3){
+			desOcc = "ATHLETIC";
+			searchOcc = true;
+		}
+		
+		
+		System.out.println("What kind of Clothing are you searching for?");
+		System.out.println("1. Shirts");
+		System.out.println("2. Pants");
+		System.out.println("3. Shoes");
+		System.out.println("4. All");
+		choice = kbd.nextInt();
+		if(choice == 1){
+			searchType = true;
+			desType = "SHIRT";
+		}
+		else if(choice == 2){
+			searchType = true;
+			desType = "PANTS";
+		}
+		else if(choice == 3){
+			searchType = true;
+			desType = "SHOES";
+		}
+		
+		
+		System.out.println("Searching...");
+		
+		ArrayList foundItems = new ArrayList<saleItem>();
+		
+		for(int i = 0; i < allProducts.size(); i++){
+			boolean addItem = true;
+			saleItem tempItem = (saleItem) allProducts.get(i);
+			if(searchArea == true && !(desArea.equals(tempItem.returnAreaFound()))){
+				addItem = false;
+			}
+			if(searchOcc == true && !(desOcc.equals(tempItem.getOccasion()))){
+				addItem = false;
+			}
+			if(searchType == true && !(desType.equals(tempItem.getProductType2()))){
+				addItem = false;
+			}
+			
+			if(addItem == true){
+				foundItems.add(tempItem);
+			}
+		}
+		
+		System.out.println("Found " + foundItems.size() + " items for you!");
+		for(int i = 0; i < foundItems.size(); i++){
+			saleItem tempItem = (saleItem) foundItems.get(i);
+			tempItem.displaySale();
+			System.out.println("------------------------------------------");
+		}
 	}
 }

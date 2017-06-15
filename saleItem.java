@@ -67,6 +67,14 @@ public class saleItem {
 		return this.brandName;
 	}
 	
+	public void setOccasion(String name){
+		this.occasion = name;
+	}
+	
+	public String getOccasion(){
+		return this.occasion;
+	}
+	
 	public void setProductName(String name){ //sets the name of product
 		this.productName = name;
 	}
@@ -160,7 +168,8 @@ public class saleItem {
 	public void displaySale(){ //print all aspects of sale product
 		System.out.println("Type of Product: " + productType1);
 		System.out.println("Type of " + productType1 + ": " + productType2);
-		System.out.println("Brand :" + brandName);
+		System.out.println("Occasion: " + occasion);
+		System.out.println("Brand: " + brandName);
 		System.out.println("Name:  " +productName);
 		System.out.println("Found by: "+ foundBy);
 		if(this.originalPrice == 0.0){
