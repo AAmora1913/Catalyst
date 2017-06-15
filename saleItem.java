@@ -1,3 +1,7 @@
+import java.io.*;
+import java.text.*;
+import java.util.*;
+
 
 public class saleItem {
 	
@@ -5,6 +9,7 @@ public class saleItem {
 	private String productType2; //Second type of sale product e.g. Shirt/Pants/Shoes, should be a mandatory input
 	private String brandName; //Brand name of product, optional input
 	private String productName; //product name, optional input
+	private String occasion;
 	private String foundBy; //user who found the sale, always filled automatically
 	private double originalPrice; //Original price of product, optional
 	private double salePrice; //sale price of product, mandatory
@@ -14,12 +19,17 @@ public class saleItem {
 	private boolean inStock; //true/false if item is still in stock or on sale
 	private String areaFound; //area item was found, should be selectable via drop down list, mandatory
 	private String storeFound; //store item was foun, should be selectable via drop down list depending on area, mandatory
+	private Date updateDate;
 	
+    private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+    
 	public saleItem(){ //Initializes saleItem
 		productType1 = null; 
 		productType2 = null;
 		brandName = null;
 		productName = null;
+		occasion = null;
 		foundBy = null;
 		originalPrice = 0.0;
 		salePrice = 0.0;
@@ -29,7 +39,9 @@ public class saleItem {
 		inStock = false;
 		areaFound = null;
 		storeFound = null;
-		
+		Date udate = new Date();
+		sdf.format(udate);
+		updateDate = udate;
 	}
 	
 	public void setProductType1(String type){ //Sets the first product type
@@ -59,9 +71,10 @@ public class saleItem {
 		this.productName = name;
 	}
 	
-	public String setProductName(){
+	public String getProductName(){
 		return this.productName;
 	}
+	
 	
 	public void setFoundBy(String name){ //sets the user who found the object
 		this.foundBy = name;
@@ -136,15 +149,29 @@ public class saleItem {
 		return this.storeFound;
 	}
 	
+	public Date updateDate(){
+		return this.updateDate();
+	}
+	
+	public void setDate(){
+		sdf.format(this.updateDate);
+	}
+	
 	public void displaySale(){ //print all aspects of sale product
 		System.out.println("Type of Product: " + productType1);
 		System.out.println("Type of " + productType1 + ": " + productType2);
 		System.out.println("Brand :" + brandName);
 		System.out.println("Name:  " +productName);
 		System.out.println("Found by: "+ foundBy);
-		System.out.println("Orginal Price: " +originalPrice);
+		if(this.originalPrice == 0.0){
+			
+		}
+		else{
+			System.out.println("Orginal Price: " +originalPrice);
+		}
 		System.out.println("Sale Price: " + salePrice);
-		System.out.println("Last Updated: " + monthUpdated + "/" + dayUpdated + "/" + yearUpdated);
+		/*System.out.println("Last Updated: " + monthUpdated + "/" + dayUpdated + "/" + yearUpdated); */
+		System.out.println("Date Updated: " + updateDate);
 		System.out.println("In stock/Still on Sale?: " + inStock);
 		System.out.println("Area: " + areaFound);
 		System.out.println("Store: " + storeFound);

@@ -6,7 +6,8 @@ public class Catalyst {
 	static ArrayList allLines = new ArrayList<String>();
 	static ArrayList allProducts = new ArrayList<saleItem>();
 	static Scanner kbd = new Scanner(System.in); //Scanner
-
+	static String username = "WHEN_TWEWY_2";
+	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 			
@@ -38,7 +39,7 @@ public class Catalyst {
 		while(sc.hasNextLine()){
 			String line = sc.nextLine();
 			line = line.toUpperCase();
-			System.out.println(line);
+			//System.out.println(line);
 			allLines.add(line);
 		}
 		
@@ -67,48 +68,138 @@ public class Catalyst {
 			item.setArea(aspects[12]);
 			allProducts.add(item);
 		}
-		
+		/*
 		for(int i = 0; i < allProducts.size(); i++){
 			((saleItem) allProducts.get(i)).displaySale();
 		}
+		*/
 	}
 	public static void postSale(){
 		System.out.println("Posting sale");
 		
-		String productType1 = null; 
-		String productType2 = null;
-		String brandName = null;
-		String productName = null;
-		String foundBy = null;
-		Double originalPrice = 0.0;
-		Double salePrice = 0.0;
-		Integer monthUpdated = null;
-		Integer dayUpdated = null;
-		Integer yearUpdated = null;
-		Boolean inStock = false;
-		String areaFound = null;
-		String storeFound = null;
-		
-		System.out.println("What kind of item are you posting?");
+		System.out.println("What kind of item are you posting (Mandatory)");
 		System.out.println("1. Clothing");
 		System.out.println("2. Other");
+		
 		int choice = kbd.nextInt();
 		if(choice == 1){
-			productType1 = "CLOTHING";
+			postClothing();
 		}
 		else if(choice == 2){
-			productType2 = "Other";
 		}
 		
-		if (choice ==1){
-			
-		}
+		
+		
 		
 	}
 	
 	
 	public static void searchSale(){
 		System.out.println("Searching for sale");
+		
+		System.out.println("Are you searching via Product Type or Area?");
+		System.out.println("");
 	}
 
+	public static void postClothing(){
+		saleItem item = new saleItem();
+		
+		item.setProductType1("CLOTHING");
+		
+		System.out.println("What type of Clothing are you posting? (Mandatory)");
+		System.out.println("1. Shirts");
+		System.out.println("2. Pants");
+		System.out.println("3. Shoes");
+		System.out.println("4. Other");
+		
+		int choice = kbd.nextInt();
+
+		
+		if(choice == 1){
+			item.setProductType2("SHIRT");
+		}
+		else if(choice == 2){
+			item.setProductType2("PANTS");
+		}
+		else if(choice == 3){
+			item.setProductType2("SHOES");
+		}
+		else if(choice == 4){
+			item.setProductType2("OTHER");
+		}
+		
+		System.out.println("Brand Name (optional, type '1' to skip)");
+		String input = kbd.next();
+		if(input.equals("1")){
+			item.setBrandName("N/A");
+		}
+		else{
+			item.setBrandName(input.toUpperCase());
+		}
+
+		System.out.println("Product Name (optional, type '1' to skip)");
+		input = kbd.next();
+		input = input.replaceAll(" ", "_");
+		if(input.equals("1")){
+			item.setBrandName("N/A");
+		}
+		else{
+			item.setProductName(input.toUpperCase());
+		}
+		
+		item.setFoundBy(username);
+		
+		System.out.println("Original Price(optional, type '1' to skip)");
+		input = kbd.next();
+		if(input.equals('1')){
+			item.setOriginalPrice(0.0);
+		}
+		else{
+			item.setOriginalPrice(Double.parseDouble(input));
+		}
+		
+		System.out.println("Sale Price (Mandatory)");
+		input = kbd.next();
+		item.setSalePrice(Double.parseDouble(input));
+		
+		item.setInStock(true);
+		
+		System.out.println("What area?");
+		System.out.println("1.King of Prussia (KOP)");
+		System.out.println("2. Exton");
+		System.out.println("3. Other");
+		
+		choice = kbd.nextInt();
+		if(choice == 1){
+			item.setArea("KOP");
+		}
+		else if(choice == 2){
+			item.setArea("EXTON");
+		}
+		else{
+			System.out.println("Please input the area in which you found this item.");
+			item.setArea(kbd.next().toUpperCase());
+		}
+		
+		System.out.println("What Store?");
+		System.out.println("1. PacSun");
+		System.out.println("2. Uniqlo");
+		System.out.println("3. Other");
+		
+		choice = kbd.nextInt();
+		if(choice == 1){
+			item.setStore("PACSUN");
+		}
+		else if(choice == 2){
+			item.setStore("UNIQLO");
+		}
+		else{
+			System.out.println("What store did you find this in?");
+			item.setStore(kbd.next().toUpperCase());
+		}
+		
+		allProducts.add(item);
+		
+		item.displaySale();
+	}
 }
