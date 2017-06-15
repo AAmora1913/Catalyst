@@ -4,7 +4,7 @@ This repository contains the code for the Catalyst App
 ## Synopsis
 Catalyst is an app intended to create a community that shares their finds in sales in malls and outlets.
 The app primarily has two functions. First is the user is able to take a picture of a sale and post
-it to the. The second is that the user is able to search for sales based on area, price range, and
+it to the app. The second is that the user is able to search for sales based on area, price range, and
 type of product.
 
 ## Motivation
