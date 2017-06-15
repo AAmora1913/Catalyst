@@ -15,7 +15,7 @@ public class saleItem {
 	private String areaFound; //area item was found, should be selectable via drop down list, mandatory
 	private String storeFound; //store item was foun, should be selectable via drop down list depending on area, mandatory
 	
-	public saleItem(String name){ //Initializes saleItem
+	public saleItem(){ //Initializes saleItem
 		productType1 = null; 
 		productType2 = null;
 		brandName = null;
@@ -36,69 +36,118 @@ public class saleItem {
 		this.productType1 = type;
 	}
 	
+	public String getProductType1(){
+		return this.productType1;
+	}
+	
 	public void setProductType2(String type){ //Sets the second product type
 		this.productType2 = type;
 	}
 	
+	public String getProductType2(){
+		return this.productType2;
+	}
 	public void setBrandName(String name){ //sets the brand name of product
 		this.brandName = name;
+	}
+	
+	public String getBrandName(){
+		return this.brandName;
 	}
 	
 	public void setProductName(String name){ //sets the name of product
 		this.productName = name;
 	}
 	
+	public String setProductName(){
+		return this.productName;
+	}
+	
 	public void setFoundBy(String name){ //sets the user who found the object
 		this.foundBy = name;
+	}
+	
+	public String returnFoundBy(){
+		return this.foundBy;
 	}
 	
 	public void setOriginalPrice(double price){ //sets the original price of the object
 		this.originalPrice = price;
 	}
 	
+	public double returnOriginalPrice(){
+		return this.originalPrice;
+	}
+	
 	public void setSalePrice(double price){ //sets the sale price of the object
 		this.salePrice = price;
+	}
+	
+	public double returnSalePrice(){
+		return this.salePrice;
+		
 	}
 	
 	public void setMonthUpdated(Integer month){ //sets the month the product was last updated
 		this.monthUpdated = month;
 	}
 	
+	public Integer returnMonthUpdated(){
+		return this.monthUpdated;
+	}
+	
 	public void setDayUpdated(Integer day){ //sets the day the product was last updated 
 		this.dayUpdated = day;
+	}
+	
+	public Integer returnDayUpdated(){
+		return this.dayUpdated;
 	}
 	
 	public void setYearUpdated(Integer year){ //sets the year the product was last updated
 		this.yearUpdated = year;
 	}
 	
+	public Integer returnYearUpdated(){
+		return this.yearUpdated;
+	}
+	
 	public void setInStock(boolean stock){ //sets whether the object is still in stock, true/false
 		this.inStock = stock;
+	}
+	
+	public boolean returnInStock(){
+		return this.inStock;
 	}
 	
 	public void setArea(String area){ //sets area the sale product is in
 		this.areaFound = area;
 	}
 	
+	public String returnAreaFound(){
+		return this.areaFound;
+	}
+	
 	public void setStore(String storeFound){ //sets store the sale product is in
 		this.storeFound = storeFound;
 	}
 	
+	public String returnStore(){
+		return this.storeFound;
+	}
+	
 	public void displaySale(){ //print all aspects of sale product
-		System.out.println(productType1);
-		System.out.println(productType2);
-		System.out.println(brandName);
-		System.out.println(productName);
-		System.out.println(foundBy);
-		System.out.println(originalPrice);
-		System.out.println(salePrice);
-		System.out.println(monthUpdated);
-		System.out.println(dayUpdated);
-		System.out.println(yearUpdated);
-		System.out.println(inStock);
-		System.out.println(areaFound);
-		System.out.println(productType2);
-		System.out.println(storeFound);
+		System.out.println("Type of Product: " + productType1);
+		System.out.println("Type of " + productType1 + ": " + productType2);
+		System.out.println("Brand :" + brandName);
+		System.out.println("Name:  " +productName);
+		System.out.println("Found by: "+ foundBy);
+		System.out.println("Orginal Price: " +originalPrice);
+		System.out.println("Sale Price: " + salePrice);
+		System.out.println("Last Updated: " + monthUpdated + "/" + dayUpdated + "/" + yearUpdated);
+		System.out.println("In stock/Still on Sale?: " + inStock);
+		System.out.println("Area: " + areaFound);
+		System.out.println("Store: " + storeFound);
 
 	}
 }
