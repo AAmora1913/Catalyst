@@ -3,10 +3,10 @@ import java.util.*;
 
 public class Catalyst {
 	
-	static ArrayList allLines = new ArrayList<String>();
-	static ArrayList allProducts = new ArrayList<saleItem>();
+	static ArrayList<String> allLines = new ArrayList<>(); //ArrayList that
+	static ArrayList<saleItem> allProducts = new ArrayList<>();
 	static Scanner kbd = new Scanner(System.in); //Scanner
-	static String username = "WHEN_TWEWY_2";
+	static String username = "WHEN_TWEWY_2"; //Username for Testing
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -17,85 +17,72 @@ public class Catalyst {
 		System.out.println("1. Post a sale");
 		System.out.println("2. Search for a sale");
 		
-		fillCategories();
+		fillCategories(); //Go to function to fill in Products
 		
 		int choice = kbd.nextInt();
 		
-		if(choice == 1){
+		if(choice == 1){ //Go to function to post a sale 
 			postSale();
 		}
 		
-		if(choice == 2){
+		if(choice == 2){ //Go to function to search for a sale
 			searchSale();
 		}
 	}
 	
 	public static void fillCategories() throws FileNotFoundException{
 		
-		Scanner kbd2 = new Scanner(System.in);
-		File file = new File("ClothingDatabase.txt");
-		Scanner sc = new Scanner(file);
+		File file = new File("ClothingDatabase.txt"); //file to represent the Clothing database
+		Scanner sc = new Scanner(file); //Scanner to read in files
 		
-		while(sc.hasNextLine()){
+		while(sc.hasNextLine()){ //Scans the Clothing Database file and reads in everything
 			String line = sc.nextLine();
 			line = line.toUpperCase();
-			//System.out.println(line);
 			allLines.add(line);
 		}
 		
 		
-		for(int i = 0; i < allLines.size(); i++){
-			saleItem item = new saleItem();
-			String line = (String) allLines.get(i);
-			String[] aspects = line.split(" ");
-			item.setProductType1(aspects[0]);
-			item.setProductType2(aspects[1]);
-			item.setOccasion(aspects[2]);
-			item.setBrandName(aspects[3]);
-			item.setProductName(aspects[4]);
-			item.setFoundBy(aspects[5]);
-			item.setOriginalPrice((Double.parseDouble(aspects[6])));
-			item.setSalePrice((Double.parseDouble(aspects[7])));
-			item.setMonthUpdated(Integer.parseInt(aspects[8]));
-			item.setDayUpdated(Integer.parseInt(aspects[9]));
-			item.setYearUpdated(Integer.parseInt(aspects[10]));
-			if(aspects[11].equals("TRUE")){
+		for(int i = 0; i < allLines.size(); i++){ //Creates a saleItem for each line in the Clothing Database
+			saleItem item = new saleItem(); //starts a new saleItem Object
+			String line = allLines.get(i); //gets the next line from the database
+			String[] aspects = line.split(" "); // splits the line by spaces
+			item.setProductType1(aspects[0]); //Sets the 1st Product Type
+			item.setProductType2(aspects[1]); //Sets the 2nd Product Type
+			item.setOccasion(aspects[2]); //Sets the occasion for the Product
+			item.setBrandName(aspects[3]); //Sets the Brand name
+			item.setProductName(aspects[4]); //Sets the Product Nae
+			item.setFoundBy(aspects[5]); //Sets the user that found the sale
+			item.setOriginalPrice((Double.parseDouble(aspects[6]))); //Sets the Original Price of the product
+			item.setSalePrice((Double.parseDouble(aspects[7]))); //Sets the sale price of the product
+			if(aspects[8].equals("TRUE")){ //Checks if the item is still in sale
 				item.setInStock(true);
 			}
 			else{
 				item.setInStock(false);
 			}
-			item.setArea(aspects[12]);
-			item.setStore(aspects[13]);
-			allProducts.add(item);
+			item.setArea(aspects[9]); //Sets Area the item is found
+			item.setStore(aspects[10]); //Sets store the item is found
+			allProducts.add(item); //adds the item to an arraylist of Products
 		}
-		/*
-		for(int i = 0; i < allProducts.size(); i++){
-			((saleItem) allProducts.get(i)).displaySale();
-		}
-		*/
 	}
-	public static void postSale(){
+	public static void postSale(){ //Function to post a sale
 		System.out.println("Posting sale");
 		
-		System.out.println("What kind of item are you posting (Mandatory)");
+		System.out.println("What kind of item are you posting (Mandatory)"); //Asks what kind of product the user is posting
 		System.out.println("1. Clothing");
 		System.out.println("2. Other");
 		
 		int choice = kbd.nextInt();
-		if(choice == 1){
+		if(choice == 1){ //Function to post Clothing
 			postClothing();
 		}
 		else if(choice == 2){
 		}
 		
-		
-		
-		
 	}
 	
 	
-	public static void searchSale(){
+	public static void searchSale(){ //function for searching for a sale
 		System.out.println("Searching for sale");
 		
 		System.out.println("What are you searching for?");
@@ -103,17 +90,17 @@ public class Catalyst {
 		System.out.println("2. Other");
 		
 		int choice = kbd.nextInt();
-		if(choice == 1 ){
+		if(choice == 1 ){ //Goes to the function for searching for clothing
 			searchClothing();
 		}
 	}
 
-	public static void postClothing(){
+	public static void postClothing(){ //Function for posting a sale for Clothing
 		saleItem item = new saleItem();
 		
 		item.setProductType1("CLOTHING");
 		
-		System.out.println("What type of Clothing are you posting? (Mandatory)");
+		System.out.println("What type of Clothing are you posting? (Mandatory)"); //Asks for Product Type 2
 		System.out.println("1. Shirts");
 		System.out.println("2. Pants");
 		System.out.println("3. Shoes");
@@ -121,7 +108,7 @@ public class Catalyst {
 		
 		int choice = kbd.nextInt();
 
-		
+		//Sets item product type 2
 		if(choice == 1){
 			item.setProductType2("SHIRT");
 		}
@@ -135,7 +122,7 @@ public class Catalyst {
 			item.setProductType2("OTHER");
 		}
 		
-		System.out.println("What occasion is this for?");
+		System.out.println("What occasion is this for?"); //Asks for Occasion
 		System.out.println("1. Formal");
 		System.out.println("2. Casual");
 		System.out.println("3. Athletic");
@@ -144,7 +131,7 @@ public class Catalyst {
 	    choice = kbd.nextInt();
 
 	    
-		
+		//Sets item occasion
 		if(choice == 1){
 			item.setOccasion("FORMAL");
 		}
@@ -158,7 +145,7 @@ public class Catalyst {
 			item.setOccasion("OTHER");
 		}
 		
-		System.out.println("Brand Name (optional, type '1' to skip)");
+		System.out.println("Brand Name (optional, type '1' to skip)"); //Sets Brand name (optional)
 		String input = kbd.next();
 		if(input.equals("1")){
 			item.setBrandName("N/A");
@@ -167,7 +154,7 @@ public class Catalyst {
 			item.setBrandName(input.toUpperCase());
 		}
 
-		System.out.println("Product Name (optional, type '1' to skip)");
+		System.out.println("Product Name (optional, type '1' to skip)"); //Sets Product name (optional)
 		input = kbd.next();
 		input = input.replaceAll(" ", "_");
 		if(input.equals("1")){
@@ -177,9 +164,9 @@ public class Catalyst {
 			item.setProductName(input.toUpperCase());
 		}
 		
-		item.setFoundBy(username);
-		
-		System.out.println("Original Price(optional, type '1' to skip)");
+		item.setFoundBy(username); //Sets user who posted the product
+		 
+		System.out.println("Original Price(optional, type '1' to skip)"); //Sets Original Price of the product
 		input = kbd.next();
 		if(input.equals("1")){
 			item.setOriginalPrice(0.0);
@@ -188,13 +175,13 @@ public class Catalyst {
 			item.setOriginalPrice(Double.parseDouble(input));
 		}
 		
-		System.out.println("Sale Price (Mandatory)");
+		System.out.println("Sale Price (Mandatory)"); //Sets sale price of the product
 		input = kbd.next();
 		item.setSalePrice(Double.parseDouble(input));
 		
 		item.setInStock(true);
 		
-		System.out.println("What area?");
+		System.out.println("What area?"); //Sets Area of the product
 		System.out.println("1.King of Prussia (KOP)");
 		System.out.println("2. Exton");
 		System.out.println("3. Other");
@@ -211,7 +198,7 @@ public class Catalyst {
 			item.setArea(kbd.next().toUpperCase());
 		}
 		
-		System.out.println("What Store?");
+		System.out.println("What Store?"); //Sets store of the product
 		System.out.println("1. PacSun");
 		System.out.println("2. Uniqlo");
 		System.out.println("3. Other");
@@ -230,12 +217,12 @@ public class Catalyst {
 		
 		allProducts.add(item);
 		
-		item.displaySale();
+		item.displaySale(); //Displays the details for the sale
 	}
 	
-	public static void searchClothing(){
+	public static void searchClothing(){ //Function for searching for clothing
 		
-		boolean searchArea = false;
+		boolean searchArea = false; //Functions as filter
 		boolean searchOcc = false;
 		boolean searchType = false;
 		
@@ -245,7 +232,7 @@ public class Catalyst {
 		
 		System.out.println("Searching for Clothing");
 		
-		System.out.println("What area are you searching in?");
+		System.out.println("What area are you searching in?"); //Asks user what area they are searching in
 		System.out.println("1. KOP");
 		System.out.println("2. Exton");
 		System.out.println("3. All");
@@ -261,7 +248,7 @@ public class Catalyst {
 			searchArea = true;
 		}
 		
-		System.out.println("For what occasion?");
+		System.out.println("For what occasion?"); //Asks for the occasion of the Clothing
 		System.out.println("1. Formal");
 		System.out.println("2. Casual");
 		System.out.println("3. Athletic");
@@ -283,7 +270,7 @@ public class Catalyst {
 		}
 		
 		
-		System.out.println("What kind of Clothing are you searching for?");
+		System.out.println("What kind of Clothing are you searching for?"); //Asks what kind of Clothing user is searching for
 		System.out.println("1. Shirts");
 		System.out.println("2. Pants");
 		System.out.println("3. Shoes");
@@ -305,11 +292,11 @@ public class Catalyst {
 		
 		System.out.println("Searching...");
 		
-		ArrayList foundItems = new ArrayList<saleItem>();
+		ArrayList<saleItem> foundItems = new ArrayList<>();
 		
-		for(int i = 0; i < allProducts.size(); i++){
+		for(int i = 0; i < allProducts.size(); i++){ //Goes through all of the items on sale and gets the ones matching the user's criteria
 			boolean addItem = true;
-			saleItem tempItem = (saleItem) allProducts.get(i);
+			saleItem tempItem = allProducts.get(i);
 			if(searchArea == true && !(desArea.equals(tempItem.returnAreaFound()))){
 				addItem = false;
 			}
@@ -326,8 +313,8 @@ public class Catalyst {
 		}
 		
 		System.out.println("Found " + foundItems.size() + " items for you!");
-		for(int i = 0; i < foundItems.size(); i++){
-			saleItem tempItem = (saleItem) foundItems.get(i);
+		for(int i = 0; i < foundItems.size(); i++){ //Displays all of the items that match the users criteria
+			saleItem tempItem = foundItems.get(i);
 			tempItem.displaySale();
 			System.out.println("------------------------------------------");
 		}

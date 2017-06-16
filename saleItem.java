@@ -9,13 +9,10 @@ public class saleItem {
 	private String productType2; //Second type of sale product e.g. Shirt/Pants/Shoes, should be a mandatory input
 	private String brandName; //Brand name of product, optional input
 	private String productName; //product name, optional input
-	private String occasion;
+	private String occasion; //Sets occasion for the item
 	private String foundBy; //user who found the sale, always filled automatically
 	private double originalPrice; //Original price of product, optional
 	private double salePrice; //sale price of product, mandatory
-	private Integer monthUpdated; //month item was last updated
-	private Integer dayUpdated; //day item was last updated
-	private Integer yearUpdated; //year item was last updated
 	private boolean inStock; //true/false if item is still in stock or on sale
 	private String areaFound; //area item was found, should be selectable via drop down list, mandatory
 	private String storeFound; //store item was foun, should be selectable via drop down list depending on area, mandatory
@@ -33,9 +30,6 @@ public class saleItem {
 		foundBy = null;
 		originalPrice = 0.0;
 		salePrice = 0.0;
-		monthUpdated = null;
-		dayUpdated = null;
-		yearUpdated = null;
 		inStock = false;
 		areaFound = null;
 		storeFound = null;
@@ -48,7 +42,7 @@ public class saleItem {
 		this.productType1 = type;
 	}
 	
-	public String getProductType1(){
+	public String getProductType1(){ //Gets the first product type
 		return this.productType1;
 	}
 	
@@ -56,22 +50,22 @@ public class saleItem {
 		this.productType2 = type;
 	}
 	
-	public String getProductType2(){
+	public String getProductType2(){ //Gets the second product type 
 		return this.productType2;
 	}
 	public void setBrandName(String name){ //sets the brand name of product
 		this.brandName = name;
 	}
 	
-	public String getBrandName(){
+	public String getBrandName(){ //gets the brand name
 		return this.brandName;
 	}
 	
-	public void setOccasion(String name){
+	public void setOccasion(String name){ //sets occasion for the item
 		this.occasion = name;
 	}
 	
-	public String getOccasion(){
+	public String getOccasion(){ //gets the occasion for the item
 		return this.occasion;
 	}
 	
@@ -79,7 +73,7 @@ public class saleItem {
 		this.productName = name;
 	}
 	
-	public String getProductName(){
+	public String getProductName(){ //gets the product name
 		return this.productName;
 	}
 	
@@ -88,7 +82,7 @@ public class saleItem {
 		this.foundBy = name;
 	}
 	
-	public String returnFoundBy(){
+	public String returnFoundBy(){ //returns the user that found the item
 		return this.foundBy;
 	}
 	
@@ -96,48 +90,25 @@ public class saleItem {
 		this.originalPrice = price;
 	}
 	
-	public double returnOriginalPrice(){
-		return this.originalPrice;
+	public double returnOriginalPrice(){ //returns the original price of the item
+		return this.originalPrice; 
 	}
 	
 	public void setSalePrice(double price){ //sets the sale price of the object
 		this.salePrice = price;
 	}
 	
-	public double returnSalePrice(){
+	public double returnSalePrice(){ //returns the sale price
 		return this.salePrice;
 		
 	}
 	
-	public void setMonthUpdated(Integer month){ //sets the month the product was last updated
-		this.monthUpdated = month;
-	}
-	
-	public Integer returnMonthUpdated(){
-		return this.monthUpdated;
-	}
-	
-	public void setDayUpdated(Integer day){ //sets the day the product was last updated 
-		this.dayUpdated = day;
-	}
-	
-	public Integer returnDayUpdated(){
-		return this.dayUpdated;
-	}
-	
-	public void setYearUpdated(Integer year){ //sets the year the product was last updated
-		this.yearUpdated = year;
-	}
-	
-	public Integer returnYearUpdated(){
-		return this.yearUpdated;
-	}
 	
 	public void setInStock(boolean stock){ //sets whether the object is still in stock, true/false
 		this.inStock = stock;
 	}
 	
-	public boolean returnInStock(){
+	public boolean returnInStock(){ //sets whether the item is still in stock/on sale
 		return this.inStock;
 	}
 	
@@ -145,7 +116,7 @@ public class saleItem {
 		this.areaFound = area;
 	}
 	
-	public String returnAreaFound(){
+	public String returnAreaFound(){ //returns the area the product is found in
 		return this.areaFound;
 	}
 	
@@ -153,15 +124,15 @@ public class saleItem {
 		this.storeFound = storeFound;
 	}
 	
-	public String returnStore(){
+	public String returnStore(){ //returns the store  item is found in
 		return this.storeFound;
 	}
 	
-	public Date updateDate(){
+	public Date updateDate(){ //sets the date the item is updated
 		return this.updateDate();
 	}
 	
-	public void setDate(){
+	public void setDate(){ //returns the date the item was last updated
 		sdf.format(this.updateDate);
 	}
 	
@@ -179,7 +150,6 @@ public class saleItem {
 			System.out.println("Orginal Price: " +originalPrice);
 		}
 		System.out.println("Sale Price: " + salePrice);
-		/*System.out.println("Last Updated: " + monthUpdated + "/" + dayUpdated + "/" + yearUpdated); */
 		System.out.println("Date Updated: " + updateDate);
 		System.out.println("In stock/Still on Sale?: " + inStock);
 		System.out.println("Area: " + areaFound);
